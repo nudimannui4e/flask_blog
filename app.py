@@ -75,7 +75,7 @@ def edit(id):
             conn.commit()
             conn.close()
             return redirect(url_for('index'))
-    return render_templaye('edit.html', post=post)
+    return render_template('edit.html', post=post)
 
 if __name__ == '__main__':
     app.run(debug=True,port=8080)
