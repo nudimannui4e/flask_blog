@@ -13,7 +13,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     connection = get_db_connection()
-    post = connection.execute('SELECT * FROM posts').fetchall()
+    posts = connection.execute('SELECT * FROM posts').fetchall()
     connection.close()
     return render_template('index.html', posts=posts)
 
