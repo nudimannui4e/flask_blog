@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, url_for, flash, redirect
 # render_template - for html
 import sqlite3
 from werkzeug.exceptions import abort
@@ -19,6 +19,10 @@ def get_post(post_id):
     return post
 
 app = Flask(__name__)
+apps.config['SECRET_KEY'] = 'secret_key'
+"""
+Функция flash( from flask import flash ) хранит всплывающие сообщения в сеансе браузера клиента, что требует настройки секретного ключа. Этот секретный ключ используется для защищенных сеансов, что позволяет Flask запоминать информацию от одного запроса к другому, например, переходить от страницы нового поста к странице индекса. Пользователь может получить доступ к информации, хранящейся в сеансе, но не может изменить ее без секретного ключа. Поэтому никогда никому не передавайте доступ к вашему секретному ключу.
+"""
 
 @app.route('/')
 def index():
@@ -32,6 +36,11 @@ def index():
 def post(post_id):
     post = get_post(post_id)
     return render_template('post.html', post=post)
+
+
+@app.route('/create', methods=('GET', 'POST'))
+def create():
+    return render_template('create.html')
 
 
 if __name__ == '__main__':
