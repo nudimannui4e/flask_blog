@@ -12,7 +12,7 @@ cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
             )
 
 cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
-            ('Second Post', 'Content for the second post')
+            ('Post from Docker', 'https://hub.docker.com/repository/docker/nudimannui4e/flask_blog')
             )
 
 connection.commit()
